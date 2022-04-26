@@ -1,7 +1,5 @@
 package com.meu.qualeacapital
 
-import kotlin.random.Random
-
 object Constants {
 
     fun getQuestions():ArrayList<Question>{
@@ -61,11 +59,12 @@ object Constants {
     fun searchQuestion(): MutableList<Int> {
 
         val search = getQuestions().size - 1
-        var mixNumber = Random.nextInt(0,search)
+        val numbers = 0..search
+        var mixNumber = numbers.random()
         val mixList = mutableListOf<Int>()
         for (i in 0..search){
             while (mixList.contains(mixNumber)){
-                mixNumber = Random.nextInt(0,search)
+                mixNumber = numbers.random()
             }
             mixList.add(mixNumber)
         }
