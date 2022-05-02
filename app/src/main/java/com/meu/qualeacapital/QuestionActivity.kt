@@ -1,11 +1,15 @@
 package com.meu.qualeacapital
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import com.meu.qualeacapital.databinding.ActivityQuestionBinding
 import com.meu.qualeacapital.databinding.CorrectDialogLayoutBinding
@@ -41,7 +45,7 @@ class QuestionActivity : AppCompatActivity() {
         binding.tvOptionOne.setOnClickListener {
             timer!!.cancel()
             equal()
-            correction(A)
+            val answer = correction(A)
             if (A){
                 binding.tvOptionOne.setBackgroundColor(resources.getColor(R.color.green_500))
             } else {
@@ -51,7 +55,7 @@ class QuestionActivity : AppCompatActivity() {
         binding.tvOptionTwo.setOnClickListener {
             timer!!.cancel()
             equal()
-            correction(B)
+            val answer = correction(B)
             if (B){
                 binding.tvOptionTwo.setBackgroundColor(resources.getColor(R.color.green_500))
             } else {
@@ -61,7 +65,7 @@ class QuestionActivity : AppCompatActivity() {
         binding.tvOptionThree.setOnClickListener {
             timer!!.cancel()
             equal()
-            correction(C)
+            val answer = correction(C)
             if (C){
                 binding.tvOptionThree.setBackgroundColor(resources.getColor(R.color.green_500))
             } else {
@@ -77,11 +81,9 @@ class QuestionActivity : AppCompatActivity() {
             } else {
                 binding.tvOptionFour.setBackgroundColor(resources.getColor(R.color.red_500))
             }
+
         }
-
         binding.points.text = "$sum|${questionList!!.size}"
-        binding.progressBar.progress = (sum * 100 / questionList!!.size )
-
     }
 
     private fun correction(answer:Boolean) {
